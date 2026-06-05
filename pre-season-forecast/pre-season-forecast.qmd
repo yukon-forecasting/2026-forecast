@@ -170,7 +170,7 @@ hindcast_year <- function(data, model, forecast_year) {
   prediction_interval <- prediction_fit + c(-2, 2) * qnorm(0.975) *
     prediction$se.fit[[1]]
   # Temporary override
-  prediction_interval <- prediction_fit + c(-3, 3)
+  # prediction_interval <- prediction_fit + c(-3, 3)
 
   # Extract response
   response_var = dimnames(attr(terms(as.formula(model)), "factors"))[[1]][1]
@@ -316,9 +316,9 @@ kable(long_term_timing_means)
 ## Hindcast all three models
 
 ```{r compareallthreemodels}
-hindcast_fifdj <- hindcast_model(yukon, "fifdj ~ amatc + msstc + pice", hindcast_years)
-hindcast_qdj <- hindcast_model(yukon, "qdj ~ amatc + msstc + pice", hindcast_years)
-hindcast_mdj <- hindcast_model(yukon, "mdj ~ amatc + msstc + pice", hindcast_years)
+hindcast_fifdj <- hindcast_model(yukon, "fifdj ~ amatc", hindcast_years)
+hindcast_qdj <- hindcast_model(yukon, "qdj ~ amatc", hindcast_years)
+hindcast_mdj <- hindcast_model(yukon, "mdj ~ amatc", hindcast_years)
 
 hindcast_all_percentiles <- rbind(
   hindcast_fifdj,
